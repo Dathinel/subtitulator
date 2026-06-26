@@ -1,0 +1,33 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - WHISPER_MODEL=small
+      - WHISPER_DEVICE=cpu
+      - WHISPER_COMPUTE_TYPE=int8
+      - MAX_FILE_SIZE_MB=500
+      - MAX_DURATION_SECONDS=3600
+      - MODEL_DIR=/app/data/models
+      - DATA_DIR=/app/data
+      - JOBS_DIR=/app/data/jobs
+      - TEMP_DIR=/app/data/temp
+      - DATABASE_URL=sqlite+aiosqlite:////app/data/subtitulator.db
+    volumes:
+      - whisper_models:/app/data/models
+      - job_data:/app/data
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://localhost:8000
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  whisper_models:
+  job_data:

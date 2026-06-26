@@ -1,0 +1,38 @@
+# ---- Python / backend ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# ---- Datos y modelos (NO subir: pesados / locales) ----
+backend/models/
+backend/data/
+*.db
+*.sqlite3
+
+# ---- Entorno (se entrega .env.example) ----
+**/.env
+!**/.env.example
+
+# ---- Node / frontend ----
+node_modules/
+frontend/dist/
+*.log
+npm-debug.log*
+
+# ---- Vídeos y media de prueba ----
+*.mp4
+*.mov
+*.mkv
+*.avi
+*.webm
+*.wav
+
+# ---- Sistema / editores ----
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
