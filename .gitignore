@@ -30,6 +30,13 @@ npm-debug.log*
 *.avi
 *.webm
 *.wav
+# Excepción: la demo del README sí se versiona
+!docs/assets/demo.mp4
+
+# ---- Artefactos de la presentación (hyperframes) ----
+presentation/renders/
+presentation/.hyperframes/
+presentation/capture/
 
 # ---- Sistema / editores ----
 .DS_Store

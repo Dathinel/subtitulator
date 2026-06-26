@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="es" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Bricolage Grotesque"; font-weight: 600; font-style: normal; src: url("fonts/bricolage-600.woff2") format("woff2"); }
+      @font-face { font-family: "Bricolage Grotesque"; font-weight: 800; font-style: normal; src: url("fonts/bricolage-800.woff2") format("woff2"); }
+      @font-face { font-family: "DM Sans"; font-weight: 400; font-style: normal; src: url("fonts/dmsans-400.woff2") format("woff2"); }
+      @font-face { font-family: "DM Sans"; font-weight: 500; font-style: normal; src: url("fonts/dmsans-500.woff2") format("woff2"); }
+      @font-face { font-family: "DM Sans"; font-weight: 700; font-style: normal; src: url("fonts/dmsans-700.woff2") format("woff2"); }
+      @font-face { font-family: "JetBrains Mono"; font-weight: 500; font-style: normal; src: url("fonts/jbmono-500.woff2") format("woff2"); }
+      @font-face { font-family: "JetBrains Mono"; font-weight: 700; font-style: normal; src: url("fonts/jbmono-700.woff2") format("woff2"); }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #0b0c10; }
+      body { font-family: "DM Sans", sans-serif; }
+
+      .scene {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        padding: 64px 110px;
+        background: #0c0e14;
+        overflow: hidden;
+      }
+      .glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(85px);
+        pointer-events: none;
+      }
+      .glow-a { width: 920px; height: 920px; top: -330px; right: -240px;
+        background: radial-gradient(circle, rgba(245,177,61,0.28), transparent 70%); }
+      .glow-b { width: 780px; height: 780px; bottom: -310px; left: -210px;
+        background: radial-gradient(circle, rgba(95,208,138,0.14), transparent 70%); }
+      .grid {
+        position: absolute; inset: 0; opacity: 0.05; pointer-events: none;
+        background-image: linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px);
+        background-size: 64px 64px;
+      }
+
+      .kicker {
+        color: #f5b13d; font-family: "JetBrains Mono", monospace; font-weight: 700;
+        font-size: 24px; letter-spacing: 0.32em; text-transform: uppercase; z-index: 2;
+      }
+      .title { color: #eef1f6; font-family: "Bricolage Grotesque", sans-serif; font-weight: 800;
+        font-size: 60px; text-align: center; line-height: 1.05; z-index: 2; }
+      .cap { color: #c7ccd6; font-weight: 400; font-size: 29px; text-align: center;
+        max-width: 1120px; line-height: 1.4; z-index: 2; }
+
+      .shot-wrap { z-index: 2; border-radius: 18px; overflow: hidden;
+        border: 1px solid rgba(245,177,61,0.22);
+        box-shadow: 0 50px 120px -40px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.04); }
+      .shot { display: block; height: 612px; width: auto; }
+      .shot.zoom { transform: scale(1.5); transform-origin: 80% 62%; }
+
+      .brandmark { display: flex; align-items: center; gap: 20px; z-index: 2; }
+      .logo {
+        width: 70px; height: 70px; border-radius: 16px; background: rgba(245,177,61,0.12);
+        border: 1px solid rgba(245,177,61,0.4);
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 12px 40px -8px rgba(245,177,61,0.5);
+      }
+      .logo svg { width: 38px; height: 38px; }
+      .brandname { color: #eef1f6; font-family: "Bricolage Grotesque", sans-serif;
+        font-weight: 800; font-size: 38px; letter-spacing: 0.01em; }
+      .brandsub { color: #f5b13d; font-family: "JetBrains Mono", monospace; font-size: 20px;
+        letter-spacing: 0.28em; text-transform: uppercase; }
+      .big { color: #eef1f6; font-family: "Bricolage Grotesque", sans-serif; font-weight: 800;
+        font-size: 80px; text-align: center; line-height: 1.04; z-index: 2; }
+      .accent { color: #f5b13d; }
+      .tag { color: #c7ccd6; font-size: 31px; text-align: center; z-index: 2; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="57" data-width="1920" data-height="1080">
+
+      <!-- ===== Scene 0 — Intro ===== -->
+      <div id="s0" class="clip scene" data-start="0" data-duration="6.5" data-track-index="1" style="z-index:10">
+        <div class="glow glow-a" data-layout-ignore></div><div class="glow glow-b" data-layout-ignore></div><div class="grid" data-layout-ignore></div>
+        <div class="brandmark">
+          <span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#f5b13d" stroke-width="2" stroke-linecap="round"><path d="M3 8h18" opacity="0.4"/><path d="M3 14h12"/><path d="M18 14h3"/><path d="M3 20h7" opacity="0.4"/></svg></span>
+          <span class="brandname">Subtitulator</span>
+        </div>
+        <div class="big" style="margin-top:10px">Subtítulos automáticos,<br/><span class="accent">en tu propia máquina.</span></div>
+        <div class="tag">Transcribe el audio en local · revísalo · quémalo en el vídeo</div>
+      </div>
+
+      <!-- ===== Scene 1 — Subir ===== -->
+      <div id="s1" class="clip scene" data-start="5.9" data-duration="8.0" data-track-index="2" style="z-index:11">
+        <div class="glow glow-a" data-layout-ignore></div><div class="glow glow-b" data-layout-ignore></div>
+        <div class="kicker">01 · Subir</div>
+        <div class="title">Empieza con tu vídeo</div>
+        <div class="shot-wrap" data-layout-allow-overflow><img class="shot" src="assets/s-upload.png" crossorigin="anonymous" alt="Pantalla de subida" /></div>
+        <div class="cap">Arrastra un vídeo sin subtítulos y elige el idioma del audio y el modelo.</div>
+      </div>
+
+      <!-- ===== Scene 2 — Transcribir ===== -->
+      <div id="s2" class="clip scene" data-start="13.3" data-duration="8.0" data-track-index="1" style="z-index:12">
+        <div class="glow glow-a" data-layout-ignore></div><div class="glow glow-b" data-layout-ignore></div>
+        <div class="kicker">02 · Transcribir</div>
+        <div class="title">La IA escucha por ti</div>
+        <div class="shot-wrap" data-layout-allow-overflow><img class="shot" src="assets/s-progress.png" crossorigin="anonymous" alt="Pantalla de progreso" /></div>
+        <div class="cap">Whisper transcribe el audio en local, con seguimiento del progreso en vivo.</div>
+      </div>
+
+      <!-- ===== Scene 3 — Revisar ===== -->
+      <div id="s3" class="clip scene" data-start="20.7" data-duration="8.0" data-track-index="2" style="z-index:13">
+        <div class="glow glow-a" data-layout-ignore></div><div class="glow glow-b" data-layout-ignore></div>
+        <div class="kicker">03 · Revisar</div>
+        <div class="title">Tú tienes el control</div>
+        <div class="shot-wrap" data-layout-allow-overflow><img class="shot" src="assets/s-editor-view.png" crossorigin="anonymous" alt="Editor de transcripción" /></div>
+        <div class="cap">Corrige el texto y ajusta los tiempos de cada segmento antes de renderizar.</div>
+      </div>
+
+      <!-- ===== Scene 4 — Estilo ===== -->
+      <div id="s4" class="clip scene" data-start="28.1" data-duration="8.0" data-track-index="1" style="z-index:14">
+        <div class="glow glow-a" data-layout-ignore></div><div class="glow glow-b" data-layout-ignore></div>
+        <div class="kicker">04 · Estilo</div>
+        <div class="title">A tu gusto, en vivo</div>
+        <div class="shot-wrap" data-layout-allow-overflow><img class="shot zoom" src="assets/s-editor-view.png" crossorigin="anonymous" alt="Panel de estilo y vista previa" /></div>
+        <div class="cap">Fuente, tamaño, color y posición — con vista previa instantánea del subtítulo.</div>
+      </div>
+
+      <!-- ===== Scene 5 — Historial ===== -->
+      <div id="s5" class="clip scene" data-start="35.5" data-duration="7.0" data-track-index="2" style="z-index:15">
+        <div class="glow glow-a" data-layout-ignore></div><div class="glow glow-b" data-layout-ignore></div>
+        <div class="kicker">05 · Historial</div>
+        <div class="title">Nada se pierde</div>
+        <div class="shot-wrap" data-layout-allow-overflow><img class="shot" src="assets/s-history.png" crossorigin="anonymous" alt="Historial de trabajos" /></div>
+        <div class="cap">Todos tus trabajos quedan guardados y accesibles cuando los necesites.</div>
+      </div>
+
+      <!-- ===== Scene 6 — Descargar ===== -->
+      <div id="s6" class="clip scene" data-start="41.9" data-duration="8.0" data-track-index="1" style="z-index:16">
+        <div class="glow glow-a" data-layout-ignore></div><div class="glow glow-b" data-layout-ignore></div>
+        <div class="kicker">06 · Descargar</div>
+        <div class="title">Listo para compartir</div>
+        <div class="shot-wrap" data-layout-allow-overflow><img class="shot" src="assets/s-download.png" crossorigin="anonymous" alt="Pantalla de descarga" /></div>
+        <div class="cap">Descarga el vídeo con los subtítulos quemados, siempre visibles en la imagen.</div>
+      </div>
+
+      <!-- ===== Scene 7 — Outro ===== -->
+      <div id="s7" class="clip scene" data-start="49.3" data-duration="7.5" data-track-index="2" style="z-index:17">
+        <div class="glow glow-a" data-layout-ignore></div><div class="glow glow-b" data-layout-ignore></div><div class="grid" data-layout-ignore></div>
+        <div class="big">Local. Privado.<br/><span class="accent">Open source.</span></div>
+        <div class="brandmark" style="margin-top:16px">
+          <span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#f5b13d" stroke-width="2" stroke-linecap="round"><path d="M3 8h18" opacity="0.4"/><path d="M3 14h12"/><path d="M18 14h3"/><path d="M3 20h7" opacity="0.4"/></svg></span>
+          <span class="brandsub">github.com/l-i408/subtitulator</span>
+        </div>
+      </div>
+
+      <!-- ===== Música de fondo ===== -->
+      <audio id="bgm" class="clip" data-start="0" data-duration="57" data-track-index="3" src="assets/music.wav" data-volume="1"></audio>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      const scenes = [
+        { id: "s0", start: 0.0,  dur: 6.5, intro: true },
+        { id: "s1", start: 5.9,  dur: 8.0 },
+        { id: "s2", start: 13.3, dur: 8.0 },
+        { id: "s3", start: 20.7, dur: 8.0 },
+        { id: "s4", start: 28.1, dur: 8.0 },
+        { id: "s5", start: 35.5, dur: 7.0 },
+        { id: "s6", start: 41.9, dur: 8.0 },
+        { id: "s7", start: 49.3, dur: 7.5, outro: true }
+      ];
+
+      scenes.forEach((s) => {
+        // Crossfade entrance (the transition between scenes)
+        tl.from(`#${s.id}`, { opacity: 0, duration: 0.6, ease: "power2.out" }, s.start);
+        // Decorative glow breathing
+        tl.fromTo(`#${s.id} .glow-a`, { scale: 0.92 }, { scale: 1.1, duration: s.dur, ease: "sine.inOut" }, s.start);
+        tl.fromTo(`#${s.id} .glow-b`, { scale: 1.1 }, { scale: 0.94, duration: s.dur, ease: "sine.inOut" }, s.start);
+
+        if (s.intro || s.outro) {
+          const big = `#${s.id} .big`;
+          const marks = `#${s.id} .brandmark, #${s.id} .tag`;
+          tl.from(big, { y: 46, opacity: 0, duration: 0.8, ease: "power3.out" }, s.start + 0.25);
+          tl.from(marks, { y: 30, opacity: 0, duration: 0.6, stagger: 0.16, ease: "power2.out" }, s.start + 0.55);
+        } else {
+          // Ken Burns on the screenshot
+          const fromScale = s.id === "s4" ? 1.42 : 1.0;
+          const toScale = s.id === "s4" ? 1.5 : 1.05;
+          tl.fromTo(`#${s.id} .shot`, { scale: fromScale, y: 14 }, { scale: toScale, y: 0, duration: s.dur, ease: "none" }, s.start);
+          // Text stagger: kicker, title, caption
+          tl.from(`#${s.id} .kicker`, { y: -22, opacity: 0, duration: 0.45, ease: "power3.out" }, s.start + 0.28);
+          tl.from(`#${s.id} .title`, { y: 32, opacity: 0, duration: 0.55, ease: "expo.out" }, s.start + 0.4);
+          tl.from(`#${s.id} .shot-wrap`, { opacity: 0, duration: 0.5, ease: "power2.out" }, s.start + 0.32);
+          tl.from(`#${s.id} .cap`, { y: 26, opacity: 0, duration: 0.5, ease: "power2.out" }, s.start + 0.62);
+        }
+      });
+
+      // Final fade to black
+      tl.to("#s7", { opacity: 0, duration: 0.9, ease: "power2.in" }, 56.0);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

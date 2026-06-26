@@ -20,8 +20,13 @@ revísalo a tu gusto y descárgalo con los subtítulos quemados en la imagen.
 > **100 % local y privado.** La transcripción usa `faster-whisper` en tu propia máquina:
 > tus vídeos nunca salen de ahí y no necesitas ninguna API de pago.
 
-<!-- Reemplaza por una captura/GIF real en docs/assets/ -->
-<!-- <p align="center"><img src="docs/assets/demo.gif" alt="Demo de Subtitulator" width="760"></p> -->
+<p align="center">
+  <img src="docs/assets/demo-teaser.gif" alt="Demo de Subtitulator" width="820">
+</p>
+
+<p align="center">
+  <a href="docs/assets/demo.mp4"><b>▶ Ver la demo completa (57 s)</b></a>
+</p>
 
 ---
 
